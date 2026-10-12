@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书成稿工坊"
+  short_description: "链接内容整理、稿件改写确认与小红书图文制作，分阶段交付文档和图片"
+  default_prompt: "使用 $xiaohongshu-content-studio，先整理这个链接的内容，输出文档，等我确认后再改写和制作小红书图文。"

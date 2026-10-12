@@ -1,0 +1,13 @@
+{
+  "title": "教程步骤整理",
+  "subtitle": "检查环境并运行示例",
+  "blocks": [
+    {"type": "paragraph", "text": "先查看 Python 版本，再运行一句问候语。这两条命令作为文字示例展示，不由文档生成脚本执行。"},
+    {"type": "heading", "text": "第一步 检查版本", "level": 1},
+    {"type": "code", "text": "python --version"},
+    {"type": "paragraph", "text": "记录返回的版本信息，用于核对实际环境。"},
+    {"type": "heading", "text": "第二步 运行问候语", "level": 1},
+    {"type": "code", "text": "python -c \"print('你好')\""},
+    {"type": "paragraph", "text": "执行结果应显示问候语。保留命令中的引号和括号，不因改写说明而修改命令。"}
+  ]
+}

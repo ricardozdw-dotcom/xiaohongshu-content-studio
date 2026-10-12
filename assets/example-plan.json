@@ -1,0 +1,31 @@
+{
+  "title": "用 AI 梳理工作经历",
+  "brand": "AI 实操",
+  "eyebrow": "AI 实操 / 职业探索",
+  "pages": [
+    {
+      "type": "cover",
+      "title": ["把工作经历喂给 AI，", "先整理技能，", "再验证方向。"],
+      "lead": "先把做过的事讲清，再让 AI 比较候选方向。",
+      "image": "demo-photo.jpg",
+      "image_note": "封面：AI 生成示意",
+      "blocks": [
+        {"type": "paragraph", "text": "这是版式示例，不是已经确认的发布稿。\n真实任务先交文档，确认后再做图。"},
+        {"type": "meta", "text": "AI 给出候选方案，不保证收入结果。"}
+      ]
+    },
+    {
+      "type": "content",
+      "title": ["先补背景，", "再问具体问题。"],
+      "number": 1,
+      "footer": "匿名版式示例",
+      "blocks": [
+        {"type": "paragraph", "text": "写清工作经历、代表成果、技能证据，以及现阶段能投入的时间。"},
+        {"type": "label", "text": "可以这样问 AI"},
+        {"type": "prompt", "paragraphs": ["基于我的职业背景，列出有经历依据的技能，并说明它们能解决什么问题。", "不要把推测写成已有能力。信息不足时先提问，事实和判断分开写。"]},
+        {"type": "paragraph", "lead": "下一步，回到真实经历核对。", "text": "每项能力配一个案例；没有证据的内容暂时列为待验证。"},
+        {"type": "quote", "text": "经历和作品，\n比多一个能力标签更有用。"}
+      ]
+    }
+  ]
+}

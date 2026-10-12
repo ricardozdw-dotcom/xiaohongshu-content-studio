@@ -1,0 +1,12 @@
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+.venv/
+jobs/
+output/
+qa/
+*.zip
+.fontcache/
