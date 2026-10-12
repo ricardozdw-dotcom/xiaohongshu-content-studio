@@ -118,22 +118,6 @@ button, a, input { font-family: inherit; }
   flex: none;
   overflow: visible;
 }
-.kicker {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 16px;
-  color: #8d8b86;
-  font-size: 13px;
-  line-height: 1.4;
-}
-.kicker-badge {
-  background: #f1f0ee;
-  color: var(--muted);
-  border-radius: 999px;
-  padding: 2px 8px;
-  font-size: 12px;
-}
 .hero-title {
   margin: 0;
   font-size: var(--title);
