@@ -10,6 +10,8 @@
   --soft: #f4f3f1;
   --white: #fff;
   --title: clamp(40px, 4.6vw, 58px);
+  --content-max: 1080px;
+  --content-pad: 28px;
   --sans: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "WenQuanYi Micro Hei", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color-scheme: light;
 }
@@ -196,13 +198,15 @@ button, a, input { font-family: inherit; }
 .btn-ghost:hover { background: var(--soft); }
 .btn.is-copied { background: #0b7a43; border-color: #0b7a43; }
 
+.content {
+  width: min(var(--content-max), calc(100% - var(--content-pad) * 2));
+  margin-inline: auto;
+}
 .band {
   background: var(--band);
-  padding: 56px 28px 64px;
+  padding: 56px 0 64px;
 }
 .cards {
-  max-width: 1080px;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
@@ -252,9 +256,7 @@ button, a, input { font-family: inherit; }
 .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
 
 .howto {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 88px 24px 36px;
+  padding: 88px 0 36px;
 }
 .howto h2, .samples h2 {
   margin: 0;
@@ -355,10 +357,9 @@ button, a, input { font-family: inherit; }
 .howto-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .howto-note a:hover { color: var(--blue); }
 
-.samples { padding: 56px 24px 80px; }
+.samples { padding: 56px 0 80px; }
 .sample-frame {
-  max-width: 760px;
-  margin: 28px auto 0;
+  margin-top: 28px;
   background: var(--band);
   border-radius: 18px;
   padding: 22px 22px 14px;
@@ -402,7 +403,7 @@ button, a, input { font-family: inherit; }
 .footer a:hover { color: var(--blue); }
 
 @media (max-width: 900px) {
-  .cards { grid-template-columns: 1fr; max-width: 460px; }
+  .cards { grid-template-columns: 1fr; }
   .card-art { height: 280px; }
   .hero-unit { flex-direction: column; align-items: center; gap: 12px; }
   .hero { padding: 40px 20px 56px; }
