@@ -3,72 +3,189 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="小红书成稿工坊：从链接内容整理、文档确认与稿件改写，到固定模板图文交付的 Agent Skill。">
-  <meta name="theme-color" content="#f7f7f4">
-  <title>小红书成稿工坊 · 从一个链接，到一份成稿</title>
+  <meta name="description" content="把抖音、公众号、网页或上传材料，做成小红书长图和发布包。确认之后，再做图。">
+  <meta name="theme-color" content="#ffffff">
+  <title>小红书成稿工坊</title>
   <link rel="canonical" href="https://ricardozdw-dotcom.github.io/xiaohongshu-content-studio/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111111'/%3E%3Cpath d='M9 8.5h9.2L23 13.2V23a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 9 23V8.5z' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3Cpath d='M18 8.8V13h4.2' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="site.css">
   <script src="site.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">跳至正文</a>
-  <header class="header wrap">
-    <a class="brand" href="#"><span class="brand-mark" aria-hidden="true">稿</span>小红书成稿工坊</a>
-    <nav aria-label="主导航"><a href="#workflow">工作流</a><a href="#preview">图文样例</a><a href="#start">开始使用 ↗</a></nav>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="./">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#fff" d="M6.2 3.8h7.4L18.2 8.4V19a1.6 1.6 0 0 1-1.6 1.6H6.2A1.6 1.6 0 0 1 4.6 19V5.4c0-.9.7-1.6 1.6-1.6z"/><path fill="#111" d="M13.4 3.9V8h4.1"/></svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">小红书成稿工坊</span>
+          <span class="brand-tag">确认之后，再做图</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="页内">
+        <a href="#flow">流程</a>
+        <a href="#howto">怎么用</a>
+        <a class="nav-git" href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio">去 GitHub</a>
+      </nav>
+    </div>
   </header>
+
   <main id="main">
-    <section class="hero wrap">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="dot"></span> AGENT SKILL <span class="version">v0.2.0</span></p>
-        <h1>从一个链接，<br>到一份<span class="underline">成稿。</span></h1>
-        <p class="intro">把灵感整理清楚，把表达重新梳理，<br class="desktop-break">再把内容做成适合小红书阅读的图文。</p>
-        <p class="hero-detail">原稿 → 确认 → 改写 → 确认 → 图文交付<br>内容由你把关，重复工作交给工坊。</p>
-        <div class="actions"><a class="button" href="#start">开始使用 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio">查看 GitHub 源码 ↗</a></div>
-        <p class="micro">公开源码 · 可编辑文档 · 固定图文模板<br><a class="text-link" href="tools/browser-transcribe.html">新增：浏览器声音转文字 ↗</a></p>
-      </div>
-      <div class="hero-art">
-        <div class="art-heading"><span>THE CONTENT STUDIO</span><span>01 / 02</span></div>
-        <div class="poster-stack">
-          <img class="poster content-poster" src="assets/reference-content.png" alt="正文样例：白底中文排版、蓝色编号与重点划线" width="1080" height="1800">
-          <img class="poster cover-poster" src="assets/reference-cover.png" alt="封面样例：写实照片搭配大字标题" width="1080" height="1800">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-unit">
+        <div class="hero-copy">
+          <p class="kicker">
+            <span class="kicker-name">xiaohongshu-content-studio</span>
+            <span class="kicker-badge">仍在测试</span>
+          </p>
+          <h1 class="hero-title" id="hero-title" aria-label="确认之后，再做图。材料进来，成稿出。先对齐，再出图文。">
+            <span id="typewriter">确认之后，再做图</span><span class="caret" aria-hidden="true"></span>
+          </h1>
+          <p class="hero-sub">把抖音、公众号、网页或上传材料，做成小红书长图和发布包。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#howto">怎么用</a>
+            <a class="btn btn-ghost" href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio">去 GitHub</a>
+          </div>
         </div>
-        <p class="art-note">固定的是版式。真正的主角，是你的内容。</p>
+        <div class="hero-art">
+          <img class="wave-gif" src="assets/landing/wave.gif" width="280" height="560" alt="线稿人物在挥手">
+          <img class="wave-still" src="assets/landing/wave-static.png" width="280" height="560" alt="">
+        </div>
       </div>
     </section>
-    <section class="workflow wrap section" id="workflow" aria-labelledby="workflow-title">
-      <div class="section-head"><p class="eyebrow">THE WORKFLOW / 三步成稿</p><h2 id="workflow-title">不是一键跳过思考，<br>而是每一步都有交付。</h2></div>
-      <div class="steps">
-        <article class="step"><span class="step-number">01</span><h3>先把内容弄清楚</h3><p>提供文章链接、视频链接或已有材料。整理有效正文、口播和关键画面；获取不到的部分明确标注，不补写成“全文”。</p><div class="deliverable">交付：原始内容整理文档</div><p class="gate">由你检查，再进入改写 →</p></article>
-        <article class="step"><span class="step-number">02</span><h3>换表达，不换事实</h3><p>观点类稿件重建结构、梳理论证。教程类保留前置条件、步骤顺序、命令、参数和验收方法，让读者能跟着做。</p><div class="deliverable">交付：可编辑的改写文档</div><p class="gate">由你确认，再进入做图 →</p></article>
-        <article class="step"><span class="step-number">03</span><h3>把内容变成图文</h3><p>按固定模板制作带文字的轮播图：白底、中文衬线字体、黑色标题、灰色划线、蓝色编号和写实封面。逐页检查后交付。</p><div class="deliverable">交付：PNG + 文案 + ZIP</div><p class="gate">你拿到素材，自行发布 ✓</p></article>
+
+    <section class="band" id="flow" aria-labelledby="flow-title">
+      <h2 class="sr" id="flow-title">流程</h2>
+      <div class="cards">
+        <article class="card">
+          <div class="card-art">
+            <img src="assets/landing/clipboard.png" alt="" width="402" height="1152">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16"><rect x="7" y="4" width="10" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 4.5h6v2H9zM9 11h6M9 14.5h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <span>01</span>
+            </div>
+            <h3>整理</h3>
+            <p>链接或材料，整理出口播、字幕和画面要点。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-art">
+            <img src="assets/landing/desk.png" alt="" width="753" height="826">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4.5 19.5l3.6-1 10-10-2.6-2.6-10 10-1 3.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14.2 7.2l2.6 2.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <span>02</span>
+            </div>
+            <h3>确认改写</h3>
+            <p>观点重写，教程的步骤、命令和参数保留。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-art">
+            <img src="assets/landing/phone.png" alt="" width="509" height="1152">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16"><rect x="7" y="3.5" width="10" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 18.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <span>03</span>
+            </div>
+            <h3>出图文</h3>
+            <p>1080×1800 长图、发布文案和 ZIP。</p>
+          </div>
+        </article>
       </div>
-      <div class="workflow-note"><span aria-hidden="true">↳</span> 内容修改后需要重新确认。“后续操作都允许”不会替代具体稿件的确认。</div>
     </section>
-    <section class="preview-band" id="preview" aria-labelledby="preview-title">
-      <div class="wrap preview-layout">
-        <div class="preview-copy"><p class="eyebrow">THE FORMAT / 图文样例</p><h2 id="preview-title">图片负责讲内容，<br>正文可以短一点。</h2><p>一套有文字、有层次的阅读版式。封面抓住主题，内页一页讲清一个要点，重点信息不藏在长段落里。</p><dl class="specs"><div><dt>画布</dt><dd>1080 × 1800 PNG</dd></div><div><dt>文档</dt><dd>可编辑 DOCX</dd></div><div><dt>发布包</dt><dd>标题、正文、标签、图片</dd></div></dl><p class="micro">图片是匿名版式示例；示例照片为 AI 生成，非亲测截图。<br>实际任务会替换主题、署名及封面素材。</p></div>
-        <div class="sample-grid"><figure><a href="assets/reference-cover.png" target="_blank" rel="noopener"><img src="assets/reference-cover.png" alt="封面版式参考，点击查看完整图片" width="1080" height="1800" loading="lazy"></a><figcaption>01 / 写实封面 <span>点击看原图 ↗</span></figcaption></figure><figure><a href="assets/reference-content.png" target="_blank" rel="noopener"><img src="assets/reference-content.png" alt="正文版式参考，点击查看完整图片" width="1080" height="1800" loading="lazy"></a><figcaption>02 / 信息内页 <span>点击看原图 ↗</span></figcaption></figure></div>
+
+    <section class="howto" id="howto" aria-labelledby="howto-title">
+      <h2 id="howto-title">怎么用</h2>
+      <p class="howto-lead">按顺序做：先安装，再调用，最后用确认口令往下。</p>
+      <div class="step-pills" role="tablist" aria-label="使用步骤">
+        <a href="#step-install" data-step="install">1 安装</a>
+        <a href="#step-call" data-step="call">2 调用</a>
+        <a href="#step-confirm" data-step="confirm">3 确认</a>
       </div>
-    </section>
-    <section class="start wrap section" id="start" aria-labelledby="start-title">
-      <div class="section-head"><p class="eyebrow">GET STARTED / 开始使用</p><h2 id="start-title">把工坊带进你的智能体。</h2><p>这是可安装的 Skill，不是网页上的在线生成器。<br>网页不采集稿件，也不会自动登录或发布你的小红书账号。</p></div>
-      <div class="start-grid">
-        <article class="start-card"><span class="small-label">STEP A · 安装</span><h3>先获取完整技能包</h3><p>仓库根目录就是技能目录。安装方式、依赖与运行说明都在 README 中。</p><a class="button secondary" href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio#安装与调用">查看安装说明 ↗</a><a class="download-link" href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio/archive/refs/heads/main.zip">下载源码 ZIP ↓</a></article>
-        <article class="prompt-card"><div class="prompt-top"><span class="small-label">STEP B · 调用</span><button id="copy-prompt" type="button">复制提示词</button></div><h3>安装后，从一个链接开始</h3><p class="prompt" id="prompt-text">使用 $xiaohongshu-content-studio，先整理这个链接的内容，输出文档，等我确认后再改写和制作小红书图文。</p><p class="copy-status" id="copy-status" role="status" aria-live="polite">复制后，把你的链接一起发送。</p></article>
+      <div class="step-panel">
+        <article class="step" id="step-install">
+          <div class="step-index" aria-hidden="true">1</div>
+          <div class="step-main">
+            <h3>安装</h3>
+            <p>在支持 skill-installer 的环境里说下面这句话。名字不要改。</p>
+            <div class="copy-row">
+              <p class="copy-text" id="copy-install">使用 skill-installer，从 https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio 安装根目录的 skill，名字保持 xiaohongshu-content-studio。</p>
+              <button type="button" class="btn btn-primary" data-copy="copy-install">复制这句话</button>
+            </div>
+          </div>
+        </article>
+        <article class="step" id="step-call">
+          <div class="step-index" aria-hidden="true">2</div>
+          <div class="step-main">
+            <h3>调用</h3>
+            <p>先要文档。确认之后，再改写、做图。</p>
+            <div class="copy-row">
+              <p class="copy-text" id="copy-call">使用 $xiaohongshu-content-studio，先整理这个链接的内容，输出文档，等我确认后再改写和制作小红书图文。</p>
+              <button type="button" class="btn btn-primary" data-copy="copy-call">复制这句话</button>
+            </div>
+          </div>
+        </article>
+        <article class="step" id="step-confirm">
+          <div class="step-index" aria-hidden="true">3</div>
+          <div class="step-main">
+            <h3>确认后往下</h3>
+            <p>口令决定下一步。确认之后，不要靠「可以」往下猜。</p>
+            <div class="cmds">
+              <div class="cmd">
+                <span class="cmd-say">重新洗一遍</span>
+                <span class="cmd-does">进入改写，不出图。</span>
+              </div>
+              <div class="cmd">
+                <span class="cmd-say">内容确定，按模板做图</span>
+                <span class="cmd-does">才开始做图。</span>
+              </div>
+              <div class="cmd">
+                <span class="cmd-say">后续都允许</span>
+                <span class="cmd-does">也不会跳过确认。</span>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
+      <p class="howto-note">能力、限制和版式细节在 <a href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio/blob/main/README.md">GitHub README</a>。</p>
     </section>
-    <section class="wrap section" aria-labelledby="audio-tool-title">
-      <p class="eyebrow">NEW IN 0.2 / 浏览器转写工具</p>
-      <h2 id="audio-tool-title">只有视频能播放？<br>把标签页的声音录下来。</h2>
-      <p class="intro">仓库自带录音与本地识别网页，不依赖某台电脑预装的软件。<br>使用者选择目标标签页并共享声音，即可录音、转写和导出文字。</p>
-      <a class="button" href="tools/browser-transcribe.html">打开声音转文字工具 ↗</a>
-      <p class="micro">建议桌面 Chrome / Edge。首次需联网下载模型，无需 API Key。<br>录音和识别在浏览器内进行；自动结果待核对，不代表全文已验证。</p>
-    </section>
-    <section class="limits wrap section" aria-labelledby="limits-title">
-      <div><p class="eyebrow">GOOD TO KNOW / 使用边界</p><h2 id="limits-title">能做什么，<br>也说清不能做什么。</h2></div>
-      <div class="limits-list"><article><h3>链接不等于已经读到全文</h3><p>链接访问与图像生成依赖宿主能力。缺字幕时先检查转写路径，包内另提供浏览器录音识别工具；它不绕过平台访问或共享权限，自动结果必须核对。模型首次下载，不自带登录凭据或付费接口。</p></article><article><h3>重写不是复制，也不是编造</h3><p>自有、授权或直接提供的材料按许可范围整理。普通第三方链接以详细要点整理为主，不默认逐字复制整篇；事实、引用与教程技术细节保留准确性。</p></article><article><h3>你的稿件，不进入公开仓库</h3><p>任务原稿、输出文档和发布包保存在独立任务目录，不自动上传 GitHub。仓库仅包含技能说明、脚本和匿名样例。</p></article><article><h3>公开源码，暂未添加许可证</h3><p>仓库可以公开查看。当前未授予 MIT 等开源许可证，使用及再分发授权需另行确认；公开不等于获得第三方素材的再分发许可。</p></article></div>
+
+    <section class="samples" id="samples" aria-labelledby="samples-title">
+      <h2 id="samples-title">成稿长这样</h2>
+      <p class="samples-lead">固定模板：白底宋体、黑标题、灰划线、蓝编号。</p>
+      <div class="sample-frame">
+        <div class="sample-grid">
+          <a href="assets/reference-cover.png"><img src="assets/reference-cover.png" alt="封面版式：白底、黑色大标题、蓝色编号" width="1080" height="1800"></a>
+          <a href="assets/reference-content.png"><img src="assets/reference-content.png" alt="内页版式：黑色标题、灰色划线和蓝色编号" width="1080" height="1800"></a>
+        </div>
+        <div class="sample-cap"><span>版式参考</span><span>演示模板</span></div>
+      </div>
     </section>
   </main>
-    <footer class="footer wrap"><div><a class="brand" href="#">小红书成稿工坊</a><p>少一点重复劳动，多一点内容判断。</p></div><div class="footer-links"><a href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio">GitHub ↗</a><a href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio/blob/main/SKILL.md">技能说明 ↗</a><span>v0.2.0 · GitHub Pages</span></div></footer>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>小红书成稿工坊</span>
+      <nav aria-label="页脚">
+        <a href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio">GitHub</a>
+        <a href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio/blob/main/SKILL.md">技能说明</a>
+        <a href="tools/browser-transcribe.html">浏览器转写</a>
+      </nav>
+    </div>
+  </footer>
+  <div class="sr" id="copy-status" role="status" aria-live="polite"></div>
 </body>
 </html>
