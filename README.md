@@ -1,5 +1,7 @@
 # 小红书成稿工坊
 
+项目网站：[小红书成稿工坊 · GitHub Pages](https://ricardozdw-dotcom.github.io/xiaohongshu-content-studio/)。网站用于介绍、版式预览和安装指引，不是在线生成器。
+
 `xiaohongshu-content-studio` 将链接或上传材料整理为文档，经内容确认后改写，再制作带文字的小红书图文。它是一个可安装的 Agent Skill，不是自动抓取所有视频或自动发布账号的服务。
 
 ## 三阶段流程
@@ -70,3 +72,9 @@ python -m unittest discover -s tests
 - `tests/`：确认节点、版本变更与文本保真测试。
 
 公开仓库不等于已获得所有第三方素材的再分发许可。用户原稿、第三方视频、任务发布包、密码、验证码和 API 密钥不属于本仓库发布内容。
+
+## 源码与网页发布
+
+本仓库目前公开，但暂未添加 MIT 等开源许可证；公开可见不等于授予修改、使用和再分发授权。
+
+GitHub Pages 使用 `main` 分支根目录发布。`index.html`、`site.css`、`site.js` 和现有 `assets/` 构成静态介绍站；`.nojekyll` 禁用 Jekyll 处理。推送更新后由 GitHub Pages 自动重新部署。
