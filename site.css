@@ -168,13 +168,13 @@ button, a, input { font-family: inherit; }
   text-wrap: wrap;
 }
 .hero-actions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
-.hero-art { flex: none; }
-.hero-art img {
+.hero-art { flex: none; background: #fff; }
+.hero-wave {
   display: block;
   height: min(460px, 58vh);
   width: auto;
+  background: #fff;
 }
-.wave-still { display: none; }
 
 .btn {
   display: inline-flex;
@@ -407,7 +407,7 @@ button, a, input { font-family: inherit; }
   .hero-unit { flex-direction: column; align-items: center; gap: 12px; }
   .hero { padding: 40px 20px 56px; }
   .hero-copy { width: min(calc(var(--title) * 8), 100%); }
-  .hero-art img { height: 360px; }
+  .hero-wave { height: min(340px, 86vw); }
   .top-inner { padding: 12px 16px; }
   .brand-tag, .nav a:not(.nav-git) { display: none; }
   .nav { gap: 0; }
@@ -425,6 +425,4 @@ button, a, input { font-family: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .caret { animation: none; }
-  .wave-gif { display: none; }
-  .wave-still { display: block; }
 }

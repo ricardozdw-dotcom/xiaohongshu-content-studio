@@ -109,4 +109,15 @@ pills.forEach((pill) => {
 alignSubtitle();
 window.addEventListener('resize', alignSubtitle);
 
+const heroWave = document.querySelector('.hero-wave');
+if (heroWave) {
+  if (reduceMotion) {
+    heroWave.removeAttribute('autoplay');
+    heroWave.pause();
+  } else {
+    const started = heroWave.play();
+    if (started) started.catch(() => {});
+  }
+}
+
 if (!reduceMotion && typewriter) cycleTitles();
