@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -32,6 +33,50 @@ def verify_document(job, record):
         raise ValueError('Reviewed document changed; submit and confirm its new version')
 
 
+def capture_file(job, record):
+    if (not isinstance(record, dict) or not isinstance(record.get('path'), str)
+            or not record['path'].strip() or Path(record['path']).is_absolute()
+            or not isinstance(record.get('sha256'), str)):
+        raise ValueError('Capture artifact requires a relative path and SHA256')
+    job = Path(job).resolve()
+    path = (job / record['path']).resolve()
+    if not path.is_relative_to(job) or not path.is_file() or digest(path) != record['sha256']:
+        raise ValueError('Capture evidence missing, outside job, or changed; review it again')
+    return path
+
+
+def validate_capture(job, state):
+    if state.get('source_kind') != 'video':
+        return
+    if 'capture_report' not in state:
+        raise ValueError('Complete video requires a reviewed --capture-report, not a chapter summary')
+    path = capture_file(job, state['capture_report'])
+    report = json.loads(path.read_text(encoding='utf-8'))
+    if not isinstance(report, dict) or report.get('version') != 1:
+        raise ValueError('Unsupported video capture report format')
+    if report.get('source_url') != state.get('source_url'):
+        raise ValueError('Capture report must identify the actual task source URL')
+    if report.get('basis') not in ('full_audio_transcription', 'full_subtitles', 'provided_full_transcript'):
+        raise ValueError('Chapter summaries cannot establish complete video speech coverage')
+    review = report.get('review', {})
+    if (not isinstance(review, dict) or report.get('full_timeline_checked') is not True
+            or review.get('checked') is not True or not isinstance(review.get('note'), str)
+            or not review['note'].strip() or report.get('unresolved_gaps') != []):
+        raise ValueError('Review full timeline, technical details and unresolved gaps before complete coverage')
+    durations = [report.get('expected_duration_seconds'), report.get('processed_duration_seconds')]
+    if any(isinstance(x, bool) or not isinstance(x, (float, int)) or not math.isfinite(x) or x <= 0 for x in durations):
+        raise ValueError('Capture report requires verified positive source and processed durations')
+    if abs(durations[0] - durations[1]) > max(2, durations[0] * 0.02) and not (isinstance(review.get('duration_note'), str) and review['duration_note'].strip()):
+        raise ValueError('Duration mismatch requires an actual reviewed explanation')
+    artifacts = report.get('artifacts')
+    if not isinstance(artifacts, list) or not artifacts:
+        raise ValueError('Capture report must bind original subtitle or transcription artifacts')
+    for artifact in artifacts:
+        evidence = capture_file(job, artifact)
+        if evidence == path:
+            raise ValueError('Capture report cannot use itself as original evidence')
+
+
 def validate_ready(job, state):
     job = Path(job).resolve()
     if state.get('phase') != 'ready_to_publish':
@@ -40,6 +85,7 @@ def validate_ready(job, state):
         raise ValueError('Both human review records are required')
     if state.get('coverage') != 'complete':
         raise ValueError('Source coverage is incomplete')
+    validate_capture(job, state)
     verify_document(job, state['source'])
     verify_document(job, state['rewrite'])
     for name in ('source', 'rewrite'):
@@ -54,6 +100,8 @@ def main():
     parser.add_argument('--job', required=True)
     parser.add_argument('--url', default='')
     parser.add_argument('--rights', choices=['unknown', 'user_owned', 'authorized', 'provided'], default='unknown')
+    parser.add_argument('--source-kind', choices=['article', 'video', 'provided'], default='provided')
+    parser.add_argument('--capture-report', help='Reviewed video capture report stored inside the job')
     parser.add_argument('--document')
     parser.add_argument('--coverage', choices=['complete', 'partial'])
     parser.add_argument('--mode', choices=['verbatim', 'detailed_summary'], default='detailed_summary')
@@ -66,7 +114,7 @@ def main():
         if target.exists():
             raise ValueError('Job already exists; use another job directory')
         job.mkdir(parents=True, exist_ok=True)
-        state = {'version': 1, 'phase': 'capture', 'source_url': args.url,
+        state = {'version': 2, 'phase': 'capture', 'source_url': args.url, 'source_kind': args.source_kind,
                  'rights': args.rights, 'created_at': stamp, 'history': []}
     else:
         state = json.loads(target.read_text(encoding='utf-8'))
@@ -79,6 +127,14 @@ def main():
         state['source'] = record_document(job, args.document)
         state['coverage'] = args.coverage
         state['capture_mode'] = args.mode
+        state.pop('capture_report', None)
+        if args.capture_report:
+            report_path = Path(args.capture_report).resolve()
+            if not report_path.is_relative_to(job) or not report_path.is_file() or report_path.suffix != '.json':
+                raise ValueError('Capture report must be an existing JSON inside the job')
+            state['capture_report'] = {'path': report_path.relative_to(job).as_posix(), 'sha256': digest(report_path)}
+        if args.coverage == 'complete':
+            validate_capture(job, state)
         for key in ('source_approval', 'rewrite', 'rewrite_approval'):
             state.pop(key, None)
         state['phase'] = 'source_review'
@@ -111,11 +167,15 @@ def main():
                                      'sha256': state['rewrite']['sha256']}
         state['phase'] = 'ready_to_publish'
     if args.action != 'status':
+        if args.action not in ('init', 'submit-source') and state.get('coverage') == 'complete':
+            validate_capture(job, state)
         state['history'].append({'action': args.action, 'at': stamp})
         temp = job / 'job.json.tmp'
         temp.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         temp.replace(target)
     else:
+        if state.get('coverage') == 'complete':
+            validate_capture(job, state)
         for key in ('source', 'rewrite'):
             if key in state:
                 verify_document(job, state[key])

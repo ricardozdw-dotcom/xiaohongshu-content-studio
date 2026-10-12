@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="录制浏览器标签页的声音，在浏览器本地转写为文字和字幕。无需 API Key 或安装音频驱动。">
+  <title>浏览器声音转文字 · 小红书成稿工坊</title>
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="browser-transcribe.css">
+  <script type="module" src="browser-transcribe.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳至正文</a>
+  <header class="header wrap"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">稿</span>小红书成稿工坊</a><a class="text-link" href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio">查看源码 ↗</a></header>
+  <main class="wrap recorder-page" id="main">
+    <p class="eyebrow">BROWSER AUDIO → TEXT / v0.2.0</p>
+    <h1>浏览器里的声音，<br>变成可以编辑的文字。</h1>
+    <p class="intro">无需 API Key、音频驱动或本机 Python。录音和识别在当前浏览器中进行。<br>首次识别需联网下载模型；这不是粘贴链接后自动抓取视频的工具。</p>
+    <p class="notice" id="compatibility" role="status">检查浏览器能力中…</p>
+    <label class="consent"><input type="checkbox" id="consent">我确认有权录制和处理这些内容，且只共享目标视频标签页。</label>
+    <section class="tool-grid" aria-label="录音与转写">
+      <article class="tool-card">
+        <span class="step-number">01</span><h2>获取完整音频</h2>
+        <ol class="howto"><li>在同一浏览器的另一个标签页打开视频，暂停在开头。</li><li>点击“录制标签页声音”，在弹窗中选择该视频标签页，并勾选“共享标签页音频”。不要选整块屏幕。</li><li>回到视频标签页，以正常速度从头播到尾；不要跳转、倍速或混入广告。结束后返回这里，停止录音。</li></ol>
+        <div class="tool-actions"><button class="button" id="record" type="button">录制标签页声音</button><button class="button secondary" id="stop" type="button" disabled>停止录音</button></div>
+        <p id="record-status" class="tool-status" role="status">尚未开始录音。不会使用麦克风。</p>
+        <div class="file-alternative"><label for="audio-file">已有音频？也可以选择本地文件</label><input id="audio-file" type="file" accept="audio/*,.webm,.mp4,.wav,.mp3,.m4a,.ogg,.flac"><p class="micro">文件仅在本机读取。支持情况取决于浏览器的音频解码器。</p></div>
+        <audio id="audio-preview" controls hidden aria-label="录音预览"></audio>
+        <button id="save-audio" class="download-button" type="button" disabled>保存音频备份 ↓</button>
+      </article>
+      <article class="tool-card">
+        <span class="step-number">02</span><h2>在浏览器本地转写</h2>
+        <label class="field" for="language">口播语言<select id="language"><option value="chinese">中文</option><option value="auto">自动识别</option><option value="english">英语</option></select></label>
+        <label class="field" for="model">识别模型<select id="model"><option value="Xenova/whisper-tiny">Tiny · 较小模型，适合先试用</option><option value="Xenova/whisper-base">Base · 下载更大，使用更多内存</option></select></label>
+        <p class="micro">默认模型以体积优先，不保证中文识别准确。专有名词、数字、命令和提示词必须回听核对。</p>
+        <label class="field" for="source-url">原视频链接（可选）<input type="url" id="source-url" placeholder="https://…"></label>
+        <label class="field" for="expected-duration">原视频总时长，秒（建议填写）<input type="number" id="expected-duration" min="1" step="0.1" placeholder="例如：180"></label>
+        <button class="button" id="transcribe" type="button" disabled>下载模型并开始转写</button>
+        <button class="download-button" id="cancel" type="button" disabled>取消转写</button>
+        <progress id="progress" max="100" value="0" hidden aria-label="转写进度"></progress>
+        <p class="tool-status" id="transcribe-status" role="status" aria-live="polite">先录音或选择音频文件，再开始。长录音建议分段处理并注明时间范围。</p>
+      </article>
+    </section>
+    <section class="result-card" aria-labelledby="result-title">
+      <div class="result-head"><h2 id="result-title">转写结果</h2><span class="result-badge">自动识别 · 待核对</span></div>
+      <label for="transcript" class="micro">下方文字可编辑。编辑后下载的 TXT 使用当前文字；SRT 和原始 JSON 保留自动识别结果。</label>
+      <textarea id="transcript" rows="10" placeholder="转写完成后，文字将出现在这里。"></textarea>
+      <p id="coverage-status" class="tool-status">没有转写结果。录到全程不等于逐字准确，也不等于已覆盖全部关键画面。</p>
+      <div class="tool-actions"><button class="button secondary" id="save-txt" type="button" disabled>下载 TXT</button><button class="button secondary" id="save-srt" type="button" disabled>下载 SRT</button><button class="button secondary" id="save-json" type="button" disabled>下载转写 JSON</button></div>
+    </section>
+    <section class="privacy-notes"><h2>开始前，请了解这些边界</h2><ul><li>请用支持标签页音频共享的桌面浏览器。Chrome / Edge 是建议路径；Safari、手机或内置浏览器不保证支持。没有音轨会明确报错，不会冒充录音成功。</li><li>录音和识别不向本站或转写 API 上传音频。模型、WASM 和固定版本的识别库从 Hugging Face 与 jsDelivr 下载，网络供应方会收到正常资源请求。首次下载可能需要数分钟，也可能受网络限制。</li><li>识别只处理你录到或提供的音频；不会自动验证视频开头、结尾、广告、静音、缺漏或画面内容。JSON 会记录处理时长，且始终标为待核对，不能自动登记“完整原稿”。</li><li>音频保留在当前页面内存中，刷新页面会丢失，建议先保存备份。模型可能保存在浏览器缓存中；清除网站数据可清理相关缓存。失败时保留音频，改用本地转写路径，不必重新录制。</li><li>浏览器共享权限必须由使用者自己选择，Skill 无法绕过权限弹窗、平台访问或版权限制。录制受限内容也可能只有静音。</li></ul><a class="text-link" href="https://github.com/ricardozdw-dotcom/xiaohongshu-content-studio/blob/main/references/video-transcription.md">完整使用说明与本地备选路径 ↗</a></section>
+  </main>
+  <footer class="footer wrap"><a href="../">← 返回成稿工坊</a><span class="micro">公开源码 · 暂未添加开源许可证</span></footer>
+</body>
+</html>

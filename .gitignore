@@ -10,3 +10,14 @@ output/
 qa/
 *.zip
 .fontcache/
+models/
+*.bin
+*.wav
+*.webm
+*.mp3
+*.m4a
+*.srt
+*.vtt
+capture-report.json
+口播转写_待核对.*
+录音备份.*

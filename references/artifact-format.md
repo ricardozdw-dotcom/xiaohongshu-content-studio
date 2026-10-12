@@ -25,6 +25,15 @@ python scripts/workflow.py status --job JOB
 
 rights 可为 unknown、user_owned、authorized、provided。unknown 禁止登记逐字原文；coverage 可为 complete 或 partial，partial 不能推进。重新提交原稿会使两个确认失效；重新提交改写稿会使做图确认失效。
 
+新任务按输入选择 `--source-kind article|video|provided`。视频输入必须为 video；complete 原稿额外要求已核对的采集报告（格式见 [视频转写路径](video-transcription.md)）：
+
+```sh
+python scripts/workflow.py init --job JOB --url URL --rights unknown --source-kind video
+python scripts/workflow.py submit-source --job JOB --document JOB/原始内容整理_v1.docx --coverage complete --mode detailed_summary --capture-report JOB/capture-report.json
+```
+
+章节摘要或工具导出的未核对 JSON 不能作为完整报告。脚本复核报告与原始识别材料的 SHA；报告变动或原始材料变动后需要重新提交和确认。partial 可先交付范围明确的部分文档，不可继续完整视频确认。
+
 ## 文档
 
 文档 JSON 包含 title、可选 subtitle，以及顺序一致的 blocks。block 可为 heading（text、level）、paragraph/metadata（text）、list（items、ordered）、code（text）或 page_break。技术字符串直接写在 code.text 中，不改写字符。
