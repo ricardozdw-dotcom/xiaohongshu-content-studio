@@ -48,15 +48,21 @@ python scripts/build-document.py --input JOB/source-plan.json --output JOB/原�
 
 publish-plan.json 格式见 assets/example-plan.json。正式稿设置 draft_sha256 为 job.json 中 rewrite.sha256。首个 page 为 cover，后续均为 content。
 
+- 顶层 style：editorial / tech / cards / notebook / poster，省略为 editorial，未知值报错。选择理由可记在任务素材说明中；渲染报告记录实际 style 与 cover_layout。
+- cover.layout：photo / type。有 image 且省略 layout 时为 photo；否则按风格默认值。photo 要求有效图片；type 不接受未使用的 image，移除 image 和 image_note，避免假来源说明。纯文字封面可用于正式成稿。
+
 - cover：title 为分行字符串数组，lead 为短说明，image 为相对 JSON 文件目录的本地图片路径，image_note 为来源提示，blocks 为下方正文。
-- content：title 为字符串或分行数组，number 为蓝色编号，footer 为底部短标签，blocks 为正文。
+- content：title 为字符串或分行数组，number 为按主题排版的编号，footer 为底部短标签，blocks 为正文。
 - block 类型：paragraph（text，可选 lead）、meta/label/quote/code（text）、prompt（paragraphs）、steps（items 的 title/text）、schedule（items 的 period/title/text）。
 
 所有文字按文本处理，不能插入 HTML。命令代码使用 code，完整可复制版本另附 TXT。封面图片不能使用远程 URL，先将有权使用的资产保存在 JSON 旁边或其子目录。
 
 ```sh
 node scripts/render-carousel.cjs --job JOB --input JOB/publish-plan.json --output JOB/release-v1
+node scripts/render-carousel.cjs --list-styles
 ```
+
+可用 `--style cards` 覆盖计划中的风格，最终报告记录实际选择。一个计划只用一套风格。代码和命令不随主题变色而改变文本内容。
 
 有环境依赖运行时时，使用其 Node 和 Playwright；用 NODE_PATH 指定已有包位置。BROWSER_EXECUTABLE 可以指定现有浏览器路径，未指定则用 Playwright 的浏览器。包内不固定机器路径。
 
@@ -64,7 +70,10 @@ assets/example-plan.json 只是匿名版式测试，不能交付为用户成稿�
 
 ```sh
 node scripts/render-carousel.cjs --preview --input assets/example-plan.json --output NEW_PREVIEW_DIRECTORY
+node scripts/preview-styles.cjs --output NEW_STYLE_PREVIEW_DIRECTORY
 ```
+
+第二条在新目录用相同匿名内容生成五套封面和内页，保存各自 JSON 和报告。不创建确认记录，不改动正式稿。中途遇到溢出会停止，保留已生成预览供排查；修正后换新目录重新运行。
 
 输出编号 PNG、carousel.html 与 render-report.json。渲染会检查 1080×1800、横向与纵向溢出、图片加载和页脚间距；不会自动缩小正文。失败时调整文案或增加分页，换新版本目录再输出。全部 PNG 仍需人工视觉检查。
 

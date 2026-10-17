@@ -2,7 +2,7 @@
 
 项目网站：[小红书成稿工坊 · GitHub Pages](https://ricardozdw-dotcom.github.io/xiaohongshu-content-studio/)。网站提供介绍、版式预览、安装指引及独立浏览器转写工具；不是自动生成整套小红书稿件的在线服务。
 
-当前版本：**0.2.0**。新增 [浏览器声音转文字](https://ricardozdw-dotcom.github.io/xiaohongshu-content-studio/tools/browser-transcribe.html)：使用者可录制目标标签页音频，在浏览器本地识别并导出 TXT / SRT / JSON，不依赖原作者的电脑或 API Key。
+当前版本：**0.3.0**。新增五套封面与内页风格、纯文字封面、内容适配建议与多方案预览。[查看五种风格](https://ricardozdw-dotcom.github.io/xiaohongshu-content-studio/styles.html)。保留 [浏览器声音转文字](https://ricardozdw-dotcom.github.io/xiaohongshu-content-studio/tools/browser-transcribe.html)：在浏览器本地识别并导出 TXT / SRT / JSON，不依赖原作者的电脑或 API Key。
 
 `xiaohongshu-content-studio` 将链接或上传材料整理为文档，经内容确认后改写，再制作带文字的小红书图文。它是一个可安装的 Agent Skill，不是自动抓取所有视频或自动发布账号的服务。
 
@@ -10,7 +10,7 @@
 
 1. **内容整理**：读取链接的有效正文、视频口播和关键画面，输出原始内容整理文档，等待用户检查或要求改写。
 2. **重新梳理**：观点类重建表达；教程保留前置条件、步骤、命令、参数与验收标准。输出改写文档，等待确认并要求做图。
-3. **图文制作**：按白底宋体、黑色标题、灰色划线、蓝色编号和写实封面制作 1080×1800 PNG，附标题、正文、标签、可复制文本及 ZIP。
+3. **图文制作**：按内容或用户指定风格制作 1080×1800 PNG，可用照片或纯文字封面，附标题、正文、标签、可复制文本及 ZIP。
 
 全局的“后续操作都允许”不替代内容确认。阶段记录绑定文档版本，修改后旧确认失效；模板测试预览不能打包成正式稿。
 
@@ -36,14 +36,28 @@
 - 文档和所有 PNG 都要渲染并逐页检查；自动检测不能验证内容正确性或中文字体视觉质量。
 - 仅交付发布素材，不自动操作小红书账号，不自动把每次用户稿件上传 GitHub。
 
-## 固定模板
+## 多风格模板
 
-参考图用于版式复现，真实任务更换主题、署名和封面素材。
+| 风格 | 适用场景 |
+| --- | --- |
+| 经典书页 editorial | 深读、访谈，保留原有白底宋体 |
+| 深色科技 tech | AI 资讯、模型发布，墨蓝与荧光绿 |
+| 清爽卡片 cards | 教程、工具清单，独立信息卡 |
+| 暖色手账 notebook | 复盘、个人观察，奶油纸与便签 |
+| 大字海报 poster | 短观点、误区提醒，黄黑强对比 |
+
+未指定时，Skill 按内容推荐；指定风格或参考图优先。一套轮播保持一致，不每页随机换皮。用户说“试多种”时先做 2–3 套封面和代表内页对比。换风格不删关键步骤、不替代内容确认。
+
+> 内容已确认，请用清爽卡片风做图；封面用纯文字，不用人物照片。
+
+> 用同一文案给我深色科技、暖色手账、大字海报三套预览，先不要打正式发布包。
+
+下图是经典书页的旧参考；[五风格完整预览](https://ricardozdw-dotcom.github.io/xiaohongshu-content-studio/styles.html) 使用同一匿名内容，真实任务更换主题、署名和封面素材。
 
 <img src="assets/reference-cover.png" alt="封面版式参考" width="270">
 <img src="assets/reference-content.png" alt="正文版式参考" width="270">
 
-可编辑样式在 `assets/carousel.css`，匿名计划示例在 `assets/example-plan.json`。用户数据存入独立任务目录，不提交到此仓库。
+可编辑样式在 `assets/carousel.css` 与 `assets/carousel-themes.css`，风格清单在 `assets/styles.json`，匿名计划在 `assets/example-plan.json`。省略 style 的旧计划仍按 editorial 渲染。用户数据存入独立任务目录，不提交到此仓库。
 
 ## 浏览器录音与转写（每个使用者均可操作）
 
@@ -56,7 +70,7 @@
 
 克隆后可在仓库根目录运行 `python -m http.server 8000 --bind 127.0.0.1`，打开 `http://localhost:8000/tools/browser-transcribe.html`。不要直接双击 HTML。完整操作、完整性报告和本地备选方法见 [视频转写说明](references/video-transcription.md)。
 
-从旧版更新：用新包更新实际使用项目中的 Skill 副本，先保留自定义修改；只更新 GitHub 不会自动替换别人已下载的版本。检查 `SKILL.md` 的版本为 0.2.0，并存在 `tools/` 与 `references/video-transcription.md`。不要用整个旧包覆盖新版新增文件。
+从旧版更新：用新包更新实际使用项目中的 Skill 副本，先保留自定义修改；只更新 GitHub 不会自动替换别人已下载的版本。检查 `SKILL.md` 为 0.3.0，并存在 `assets/styles.json`、`assets/carousel-themes.css` 和新版导出脚本；保留 `tools/` 与视频转写说明。不要只复制新版 SKILL.md 而漏掉配套资源。
 
 ## 本地导出依赖
 
@@ -76,7 +90,11 @@ Node.js 至少 18；Python 至少 3.9。测试版本为 Playwright 1.62.1 与 py
 
 ```sh
 python -m unittest discover -s tests
+node --test tests/test_styles.cjs
+node --test tests/test_render.cjs
 ```
+
+最后一项需要 Playwright、浏览器和可用中文字体，覆盖五风格实际导出、技术文字保真、溢出拒绝与正式稿确认门禁。五套匿名预览可用 `node scripts/preview-styles.cjs --output NEW_DIRECTORY` 重建，不能作为正式发布包。
 
 ## 文件
 

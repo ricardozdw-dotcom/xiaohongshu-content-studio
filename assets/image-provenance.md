@@ -4,6 +4,12 @@ demo-photo.jpg 为内置 ImageGen 生成的职业梳理概念照片的 JPEG 版�
 
 真实任务应更换封面主题和署名，不沿用参考样图的作者标识。按宿主支持的方式保留或标注 AI 生成内容。
 
+## v0.3.0 多风格预览
+
+assets/style-previews/ 下的 WebP 是同一匿名 example-plan.json 经本包渲染后的网页缩略版（810×1350）；正式导出仍为 1080×1800 PNG。editorial 封面复用上面的 AI 示例照片，其他封面是 CSS 几何与真实字体构图，不是新生成的照片。预览不是用户稿件，也不是外部作者的小红书原图。
+
+重建：先用 `node scripts/preview-styles.cjs --output NEW_DIRECTORY` 导出 PNG，再用图像转换工具等比例缩至 810×1350 WebP，对应保存为 `风格ID-cover.webp` 与 `风格ID-content.webp`。所有图片须重新视觉检查。styles.html 与风格清单同时维护，不能把任务原稿复制到此目录。
+
 ## 示例照片生成提示词
 
 Use case: photorealistic-natural

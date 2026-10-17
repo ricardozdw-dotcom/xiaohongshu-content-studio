@@ -1,0 +1,125 @@
+/* Shared additions keep the original editorial measurements intact. */
+.page{isolation:isolate}
+.page .content{position:relative;z-index:1}
+.page .footer{z-index:2;gap:24px}
+.footer span{max-width:60%;overflow-wrap:anywhere}
+.cover-art{display:none}
+.cover-type .cover-heading{margin-bottom:70px}
+.cover-type .cover-art{display:block;height:300px;margin:40px 0 55px;position:relative;overflow:hidden}
+.cover-type .cover-art i{position:absolute;display:block}
+.cover-type .cover-art i:nth-child(1){inset:30px 65px;border:3px solid currentColor}
+.cover-type .cover-art i:nth-child(2){inset:65px 30px;border:3px solid currentColor}
+.cover-type .cover-art i:nth-child(3){width:100px;height:100px;left:calc(50% - 50px);top:100px;background:currentColor}
+.theme-tech,.theme-cards,.theme-notebook,.theme-poster{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+
+/* 02 / Tech: a dark instrument panel, not a recolored book page. */
+.theme-tech{color:#eaf4ef;background-color:#101d28;background-image:linear-gradient(#a9d9e40c 1px,transparent 1px),linear-gradient(90deg,#a9d9e40c 1px,transparent 1px);background-size:54px 54px;padding:72px 72px 76px}
+.theme-tech .rule{background:#b7f56b;height:5px;width:88px;margin-bottom:45px}
+.theme-tech .eyebrow{color:#b7f56b;letter-spacing:.12em;margin-bottom:38px;font-family:ui-monospace,monospace}
+.theme-tech h1{font-size:86px;line-height:1.32;letter-spacing:-.035em;font-weight:800}
+.theme-tech .mark{box-shadow:none;padding:0}
+.theme-tech .mark:last-child{color:#b7f56b}
+.theme-tech .lead{font-size:36px;color:#bdcfce;line-height:1.65;margin-top:32px}
+.theme-tech .visual{height:390px;border:1px solid #597477;filter:saturate(.65);border-radius:4px}
+.theme-tech .cover-art{color:#b7f56b;height:260px;background:radial-gradient(ellipse at center,#b7f56b14,transparent 65%)}
+.theme-tech .cover-art i:nth-child(1){inset:85px 260px;border-radius:50%;transform:rotate(-20deg)}
+.theme-tech .cover-art i:nth-child(2){inset:85px 240px;border-radius:50%;transform:rotate(20deg)}
+.theme-tech .cover-art i:nth-child(3){width:22px;height:22px;left:calc(50% - 11px);top:119px;border-radius:50%;box-shadow:0 0 60px #b7f56980}
+.theme-tech h2{font-size:60px;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid #4c6265;line-height:1.4}
+.theme-tech .num{background:none;border:2px solid #b7f56b;color:#b7f56b;box-shadow:none;border-radius:0;font-size:35px;width:60px;height:60px}
+.theme-tech p{font-size:36px;line-height:1.7;text-align:left}
+.theme-tech .accent{color:#b7f56b;box-shadow:none}
+.theme-tech .label{color:#b7f56b;font-size:24px;letter-spacing:.12em}
+.theme-tech .prompt,.theme-tech .code{background:#0a151f;border:1px solid #56716b;border-top:5px solid #b7f56b;border-radius:0;color:#eaf4ef}
+.theme-tech .prompt p{font-size:33px;line-height:1.7}
+.theme-tech .quote{background:#b7f56b;color:#14251b;border:0;padding:30px 34px;font-size:39px;font-weight:750}
+.theme-tech .meta{font-size:25px}
+.theme-tech .meta,.theme-tech .footer{color:#a6bfb9}
+.theme-tech .footer{left:72px;right:72px;bottom:26px}
+.theme-tech .step{padding:22px 0;border-top:1px solid #40565d}
+.theme-tech .step-index{background:#b7f56b;color:#14251b;border-radius:2px}
+.theme-tech .day{color:#b7f56b}
+
+/* 03 / Cards: spatial grouping takes priority over prose decoration. */
+.theme-cards{background:#eaf1f8;color:#172f4b;padding:72px 66px}
+.theme-cards .rule{display:none}
+.theme-cards .eyebrow{display:inline-block;padding:13px 22px;border-radius:32px;background:#2157d6;color:white;font-size:23px;letter-spacing:.05em;margin-bottom:45px}
+.theme-cards h1{font-size:84px;line-height:1.3;font-weight:800;letter-spacing:-.04em}
+.theme-cards .mark{box-shadow:none;padding:0}
+.theme-cards .mark:last-child{color:#2157d6}
+.theme-cards .lead{font-size:36px;line-height:1.7;margin-top:30px;color:#485f79}
+.theme-cards .visual{height:370px;border-radius:34px}
+.theme-cards .cover-type .cover-heading{margin-bottom:48px}
+.theme-cards .cover-art{height:280px;color:#2157d6}
+.theme-cards .cover-art i{border:0!important;border-radius:28px;background:#fff;box-shadow:0 9px 0 #ccdaeb}
+.theme-cards .cover-art i:nth-child(1){inset:28px 280px 130px 30px;transform:rotate(-4deg)}
+.theme-cards .cover-art i:nth-child(2){inset:140px 30px 32px 280px;transform:rotate(4deg)}
+.theme-cards .cover-art i:nth-child(3){width:80px;height:80px;left:calc(50% - 40px);top:100px;border-radius:24px;background:#2157d6;box-shadow:none}
+.theme-cards h2{font-size:59px;line-height:1.4;margin-bottom:34px}
+.theme-cards .num{background:#2157d6;box-shadow:none;border-radius:50%;font-size:36px}
+.theme-cards .cover-notes>p:not(.meta),.theme-cards .body-blocks>p:not(.meta){background:white;padding:26px 30px;border-radius:26px;font-size:36px;text-align:left;line-height:1.65;margin-bottom:24px}
+.theme-cards .accent{color:#2157d6;box-shadow:none}
+.theme-cards .label{font-size:25px;color:#2157d6;font-weight:700;margin-top:26px}
+.theme-cards .prompt{border:0;border-radius:26px;background:#fff;padding:27px 30px}
+.theme-cards .prompt p{font-size:33px;line-height:1.65;color:#344e69}
+.theme-cards .quote{background:#2157d6;color:white;border:0;border-radius:26px;font-size:39px;line-height:1.5;padding:28px 30px}
+.theme-cards .step{background:#fff;border-radius:24px;padding:24px;gap:18px;margin-bottom:24px}
+.theme-cards .step-index{background:#dce8ff;color:#174bb8;border-radius:15px}
+.theme-cards .step-text{font-size:34px}
+.theme-cards .code{background:white;border:2px solid #c3d2e8;border-radius:20px}
+.theme-cards .day{color:#2157d6}
+.theme-cards .footer{left:66px;right:66px;color:#52677c;bottom:24px}
+
+/* 04 / Notebook: a margin rule, warm paper and handwritten-note rhythm. */
+.theme-notebook{background:#faf4e6;color:#3d372f;padding:78px 72px 72px 112px;background-image:linear-gradient(90deg,transparent 76px,#d2816a70 76px,#d2816a70 78px,transparent 78px)}
+.theme-notebook .rule{height:1px;background:#bcae91;margin-bottom:36px}
+.theme-notebook .eyebrow{color:#93614d;font-size:24px;letter-spacing:.05em;margin-bottom:32px}
+.theme-notebook h1{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:85px;line-height:1.34;letter-spacing:-.03em}
+.theme-notebook .mark{box-shadow:inset 0 -24px #f3d58b;padding:0 .025em}
+.theme-notebook .lead{font-size:37px;line-height:1.75;color:#70604b}
+.theme-notebook .visual{height:390px;border:14px solid #fff;box-shadow:5px 8px 0 #dcd1b9;transform:rotate(-1deg);width:calc(100% - 12px);margin-left:4px}
+.theme-notebook .cover-art{height:260px;color:#927c58;background:repeating-linear-gradient(transparent 0,transparent 50px,#c6bda74d 50px,#c6bda74d 52px)}
+.theme-notebook .cover-art i:nth-child(1){inset:35px 100px;background:#f6dda0;border:0;transform:rotate(-3deg);box-shadow:5px 7px #dfd2b6}
+.theme-notebook .cover-art i:nth-child(2){inset:15px 300px 205px 300px;background:#d8a780aa;transform:rotate(4deg);border:0}
+.theme-notebook .cover-art i:nth-child(3){width:130px;height:3px;left:calc(50% - 65px);top:130px;background:#927c58;box-shadow:0 30px #927c58}
+.theme-notebook h2{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:61px;line-height:1.4;margin-bottom:38px}
+.theme-notebook .num{border-radius:50%;background:none;color:#ab5e3d;border:2px solid #ab5e3d;box-shadow:none;font-size:36px;width:62px;height:62px;transform:rotate(-5deg)}
+.theme-notebook p{font-size:36px;line-height:1.75;text-align:left}
+.theme-notebook .accent{box-shadow:inset 0 -15px #f3d58b}
+.theme-notebook .label{color:#a45638;font-size:24px;font-weight:700;letter-spacing:.05em}
+.theme-notebook .prompt{background:#fffaf0;border:1px dashed #bba781;padding:27px 30px}
+.theme-notebook .prompt p{font-size:33px;line-height:1.7}
+.theme-notebook .quote{background:#f5dfa5;border:0;border-bottom:4px solid #d0b67f;padding:28px 30px;font-size:39px;font-weight:700}
+.theme-notebook .code{background:#fffaf0;border:1px solid #bba781}
+.theme-notebook .step-index{background:#ab5e3d;border-radius:4px}
+.theme-notebook .day{color:#a45638}
+.theme-notebook .meta{font-size:25px}
+.theme-notebook .meta,.theme-notebook .footer{color:#7e6b52}
+.theme-notebook .footer{left:112px;right:72px;bottom:24px}
+
+/* 05 / Poster: a strong hierarchy with real text, no fake data decoration. */
+.theme-poster{background:#f3ef3f;color:#161817;padding:74px 70px}
+.theme-poster .rule{background:#161817;height:12px;margin-bottom:32px}
+.theme-poster .eyebrow{font-size:24px;color:#161817;letter-spacing:.08em;border-bottom:2px solid #161817;padding-bottom:20px;margin-bottom:42px}
+.theme-poster h1{font-size:99px;line-height:1.22;letter-spacing:-.055em;font-weight:900}
+.theme-poster .mark{box-shadow:none;padding:0}
+.theme-poster .lead{font-size:37px;line-height:1.65;font-weight:650;margin-top:34px}
+.theme-poster .visual{height:345px;filter:grayscale(1);border:4px solid #161817;margin-top:34px}
+.theme-poster .cover-art{height:230px;color:#161817;margin:35px 0 45px}
+.theme-poster .cover-art i:nth-child(1){inset:0 120px 0 0;border:0;background:#161817;clip-path:polygon(0 0,70% 0,100% 50%,70% 100%,0 100%,30% 50%)}
+.theme-poster .cover-art i:nth-child(2){inset:0 0 0 auto;width:70px;border:0;background:#161817}
+.theme-poster .cover-art i:nth-child(3){display:none}
+.theme-poster h2{font-size:70px;line-height:1.3;font-weight:850;border-bottom:8px solid #161817;padding-bottom:32px;margin-bottom:35px}
+.theme-poster .num{background:#161817;color:#f3ef3f;border-radius:0;box-shadow:none;font-size:39px;width:65px;height:65px}
+.theme-poster p{font-size:37px;line-height:1.62;text-align:left}
+.theme-poster .accent{box-shadow:none;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:7px}
+.theme-poster .label{font-size:25px;font-weight:750;color:#161817;letter-spacing:.06em}
+.theme-poster .prompt{background:transparent;border:3px solid #161817;padding:25px 28px}
+.theme-poster .prompt p{font-size:33px;line-height:1.62}
+.theme-poster .quote{background:#161817;color:#f3ef3f;border:0;padding:30px 32px;font-size:43px;line-height:1.45}
+.theme-poster .code{background:#fffde0;border:3px solid #161817}
+.theme-poster .step{border-top:3px solid #161817;padding-top:24px}
+.theme-poster .step-index{background:#161817;color:#f3ef3f;border-radius:0}
+.theme-poster .meta{font-size:25px}
+.theme-poster .day,.theme-poster .meta,.theme-poster .footer{color:#353726}
+.theme-poster .footer{left:70px;right:70px;bottom:24px;border-top:2px solid #161817;padding-top:12px}

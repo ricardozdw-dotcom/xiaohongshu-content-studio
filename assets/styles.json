@@ -1,0 +1,7 @@
+[
+  {"id":"editorial","name":"经典书页","suitable":"长文拆解、深度观点、访谈笔记","description":"白底宋体、灰色划线、写实照片与蓝色编号，保留原版阅读感。","default_cover":"photo"},
+  {"id":"tech","name":"深色科技","suitable":"AI 资讯、模型发布、工具解析","description":"墨蓝网格、荧光绿重点、终端式提示框与线性编号。","default_cover":"type"},
+  {"id":"cards","name":"清爽卡片","suitable":"操作教程、工具清单、分步指南","description":"浅蓝底、白色信息卡、胶囊标签与清楚的步骤分区。","default_cover":"type"},
+  {"id":"notebook","name":"暖色手账","suitable":"个人观察、学习复盘、成长记录","description":"奶油纸色、边栏笔记、荧光笔划线与便签式引用。","default_cover":"type"},
+  {"id":"poster","name":"大字海报","suitable":"单一观点、误区提醒、简短结论","description":"高对比黄黑、大字标题、粗线分隔与醒目的结论区。","default_cover":"type"}
+]
